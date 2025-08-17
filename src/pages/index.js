@@ -1,5 +1,5 @@
 export { default as DashboardLayout } from "./DashboardLayout";
-export { default as Testing } from "./Testing";
+export { default as Landing } from "./Landing";
 export { default as HomeLayout } from "./HomeLayout";
 export { default as AddRecipe } from "./AddRecipe";
 export { default as Admin } from "./Admin";

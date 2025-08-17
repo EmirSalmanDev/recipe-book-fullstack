@@ -2,7 +2,7 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
   DashboardLayout,
-  Testing,
+  Landing,
   HomeLayout,
   AddRecipe,
   Admin,
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true, // this page will be shown whenever we forward to "/"
-        element: <Testing />,
+        element: <Landing />,
       },
       {
         path: "register",
