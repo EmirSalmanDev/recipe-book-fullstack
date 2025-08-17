@@ -19,18 +19,25 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/dashboard",
-    element: <DashboardLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        index: true, // this page will be shown whenever we forward to "/"
+        element: <Testing />,
+      },
+      {
+        path: "register",
+        element: <Register />,
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "dashboard",
+        element: <DashboardLayout />,
+      },
+    ],
   },
 ]);
 
