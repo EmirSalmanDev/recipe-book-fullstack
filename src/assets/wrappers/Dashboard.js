@@ -15,7 +15,8 @@ const Wrapper = styled.section`
       grid-template-columns: auto 1fr;
     }
     .dashboard-page {
-      width: 90%; // %90 of the 1fr
+      width: 90%;
+      /* 90% of the 1fr */
     }
   }
 `;
