@@ -3,7 +3,6 @@ import Wrapper from "../assets/wrappers/SmallSidebar";
 import { useDashboardContext } from "../pages/DashboardLayout";
 import { FaTimes } from "react-icons/fa";
 import Logo from "./Logo";
-import { NavLink } from "react-router-dom";
 import NavLinks from "./NavLinks";
 
 const SmallSidebar = () => {
