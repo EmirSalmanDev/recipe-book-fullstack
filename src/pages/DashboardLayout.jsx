@@ -49,5 +49,5 @@ const DashboardLayout = () => {
   );
 };
 
-export const useDashboardContext = () => useContext(DashboardContext);
+export const useDashboardContext = () => useContext(DashboardContext); // custom hook
 export default DashboardLayout;
