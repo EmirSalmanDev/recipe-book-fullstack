@@ -1,9 +1,11 @@
 import express from "express";
 import morgan from "morgan";
 import * as dotenv from "dotenv";
-
 dotenv.config();
 const app = express();
+
+// routers
+import recipeRouter from "./routes/recipeRouter.js";
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
@@ -11,12 +13,15 @@ if (process.env.NODE_ENV === "development") {
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
+// get all recipes
+app.use("/api/recipes", recipeRouter);
+
+app.use("*", (req, res) => {
+  res.status(404).json({ message: "not found" });
 });
 
-app.post("/", (req, res) => {
-  res.json({ message: "data received", data: req.body });
+app.use((err, req, res, next) => {
+  res.status(500).json({ message: "something went wrong" });
 });
 
 const port = process.env.PORT || 5100;
