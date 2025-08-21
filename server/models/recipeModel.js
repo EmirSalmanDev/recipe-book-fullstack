@@ -1,18 +1,14 @@
 import mongoose from "mongoose";
+import { RECIPE_STATUS } from "../utils/constants.js";
 
 const recipeSchema = new mongoose.Schema(
   {
-    title: { type: String, required: true, minlength: 3, maxlength: 30 },
-    description: {
-      type: String,
-      required: true,
-      minlength: 20,
-      maxlength: 300,
-    },
+    title: String,
+    description: String,
     recipeStatus: {
       type: String,
-      enum: ["testing", "done"],
-      default: "testing",
+      enum: Object.values(RECIPE_STATUS),
+      default: RECIPE_STATUS.TESTING,
     },
     // image: { type: String, required: true },
     //creator: { type: mongoose.Types.ObjectId, required: true, ref: "User" },

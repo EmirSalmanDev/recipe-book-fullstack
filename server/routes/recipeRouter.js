@@ -8,14 +8,15 @@ import {
   editRecipeById,
   deleteRecipeById,
 } from "../controllers/recipeController.js";
+import { validateRecipeInput } from "../models/validationMiddleware.js";
 
 router.get("/:rid", getRecipeById);
 
 router.get("/", getAllRecipes);
 
-router.post("/", createRecipe);
+router.post("/", validateRecipeInput, createRecipe);
 
-router.patch("/:rid", editRecipeById);
+router.patch("/:rid", validateRecipeInput, editRecipeById);
 
 router.delete("/:rid", deleteRecipeById);
 
