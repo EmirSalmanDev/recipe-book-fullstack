@@ -3,6 +3,7 @@ import morgan from "morgan";
 import * as dotenv from "dotenv";
 dotenv.config();
 const app = express();
+import mongoose, { mongo } from "mongoose";
 
 // routers
 import recipeRouter from "./routes/recipeRouter.js";
@@ -26,6 +27,13 @@ app.use((err, req, res, next) => {
 
 const port = process.env.PORT || 5100;
 
-app.listen(port, () => {
-  console.log(`server running on PORT ${port}....`);
-});
+try {
+  await mongoose.connect(process.env.MONGO_URL);
+  console.log("Connected to database");
+  app.listen(port, () => {
+    console.log(`server running on PORT ${port}....`);
+  });
+} catch (error) {
+  console.log(error);
+  process.exit(1);
+}
