@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const recipeSchema = new mongoose.Schema(
   {
@@ -14,9 +14,8 @@ const recipeSchema = new mongoose.Schema(
       enum: ["testing", "done"],
       default: "testing",
     },
-    image: { type: String, required: true }, // URL
-    address: { type: String, required: true },
-    creator: { type: mongoose.Types.ObjectId, required: true, ref: "User" },
+    // image: { type: String, required: true },
+    //creator: { type: mongoose.Types.ObjectId, required: true, ref: "User" },
   },
   {
     timestamps: true,

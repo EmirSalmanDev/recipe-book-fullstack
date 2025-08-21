@@ -11,7 +11,7 @@ import {
 
 router.get("/:rid", getRecipeById);
 
-router.get("/user/:uid", getAllRecipes);
+router.get("/", getAllRecipes);
 
 router.post("/", createRecipe);
 

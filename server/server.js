@@ -1,9 +1,13 @@
+import "express-async-errors"; // automatically forwards errors from async routes to Express error handlers
 import express from "express";
 import morgan from "morgan";
 import * as dotenv from "dotenv";
 dotenv.config();
 const app = express();
 import mongoose, { mongo } from "mongoose";
+
+// middleware
+import errorHandlerMiddleware from "./models/errorHandlerMiddleware.js";
 
 // routers
 import recipeRouter from "./routes/recipeRouter.js";
@@ -21,9 +25,7 @@ app.use("*", (req, res) => {
   res.status(404).json({ message: "not found" });
 });
 
-app.use((err, req, res, next) => {
-  res.status(500).json({ message: "something went wrong" });
-});
+app.use(errorHandlerMiddleware);
 
 const port = process.env.PORT || 5100;
 
