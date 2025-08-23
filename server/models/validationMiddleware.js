@@ -3,6 +3,7 @@ import { BadRequestError, NotFoundError } from "./customError.js";
 import { RECIPE_STATUS } from "../utils/constants.js";
 import mongoose from "mongoose";
 import Recipe from "./recipeModel.js";
+import User from "./userModel.js";
 
 const withValidationErrors = (validateValues) => {
   return [
@@ -50,4 +51,22 @@ export const validateIdParam = withValidationErrors([
         "Could not find a recipe for the given place id."
       );
   }),
+]);
+
+export const validateRegisterInput = withValidationErrors([
+  body("name").notEmpty().withMessage("name is required"),
+  body("email")
+    .notEmpty()
+    .withMessage("email is required")
+    .isEmail()
+    .withMessage("invalid email format")
+    .custom(async (email) => {
+      const user = await User.findOne({ email });
+      if (user) throw new BadRequestError("email already exists.");
+    }),
+  body("password")
+    .notEmpty()
+    .withMessage("password is required")
+    .isLength({ min: 8 })
+    .withMessage("password must be at least 8 characters long"),
 ]);
