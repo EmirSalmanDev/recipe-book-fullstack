@@ -11,6 +11,7 @@ import errorHandlerMiddleware from "./models/errorHandlerMiddleware.js";
 
 // routers
 import recipeRouter from "./routes/recipeRouter.js";
+import authRouter from "./routes/authRouter.js";
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
@@ -20,6 +21,7 @@ app.use(express.json());
 
 // get all recipes
 app.use("/api/recipes", recipeRouter);
+app.use("/api/auth", authRouter);
 
 app.use("*", (req, res) => {
   res.status(404).json({ message: "not found" });
