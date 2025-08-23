@@ -1,6 +1,8 @@
-import { body, validationResult } from "express-validator";
-import { BadRequestError } from "./customError.js";
+import { body, param, validationResult } from "express-validator";
+import { BadRequestError, NotFoundError } from "./customError.js";
 import { RECIPE_STATUS } from "../utils/constants.js";
+import mongoose from "mongoose";
+import Recipe from "./recipeModel.js";
 
 const withValidationErrors = (validateValues) => {
   return [
@@ -9,6 +11,9 @@ const withValidationErrors = (validateValues) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         const errorMessages = errors.array().map((e) => e.msg);
+        if (errorMessages[0].startsWith("Could not find")) {
+          throw new NotFoundError(errorMessages);
+        }
         throw new BadRequestError(errorMessages);
       }
       next();
@@ -30,4 +35,19 @@ export const validateRecipeInput = withValidationErrors([
   body("recipeStatus")
     .isIn(Object.values(RECIPE_STATUS))
     .withMessage("Invalid status value"),
+]);
+
+export const validateIdParam = withValidationErrors([
+  param("rid").custom(async (value) => {
+    const isValid = mongoose.Types.ObjectId.isValid(value);
+    if (!isValid) {
+      throw new BadRequestError("invalid MongoDB id");
+    }
+
+    const recipe = await Recipe.findById(value);
+    if (!recipe)
+      throw new NotFoundError(
+        "Could not find a recipe for the given place id."
+      );
+  }),
 ]);
