@@ -14,6 +14,7 @@ import { authenticateUser } from "./middleware/authMiddleware.js";
 // routers
 import recipeRouter from "./routes/recipeRouter.js";
 import authRouter from "./routes/authRouter.js";
+import userRouter from "./routes/userRouter.js";
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
@@ -24,6 +25,7 @@ app.use(cookieParser());
 
 // get all recipes
 app.use("/api/recipes", authenticateUser, recipeRouter);
+app.use("/api/users", authenticateUser, userRouter);
 app.use("/api/auth", authRouter);
 
 app.use("*", (req, res) => {

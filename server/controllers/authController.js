@@ -1,6 +1,5 @@
 import User from "../models/userModel.js";
 import { StatusCodes } from "http-status-codes";
-import bcrypt from "bcryptjs";
 import { comparePassword, hashPassword } from "../utils/passwordUtils.js";
 import { UnauthenticatedError } from "../models/customError.js";
 import { createJWT } from "../utils/tokenUtils.js";
