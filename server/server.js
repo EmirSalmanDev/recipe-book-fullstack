@@ -5,9 +5,11 @@ import * as dotenv from "dotenv";
 dotenv.config();
 const app = express();
 import mongoose, { mongo } from "mongoose";
+import cookieParser from "cookie-parser";
 
 // middleware
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
+import { authenticateUser } from "./middleware/authMiddleware.js";
 
 // routers
 import recipeRouter from "./routes/recipeRouter.js";
@@ -18,9 +20,10 @@ if (process.env.NODE_ENV === "development") {
 }
 
 app.use(express.json());
+app.use(cookieParser());
 
 // get all recipes
-app.use("/api/recipes", recipeRouter);
+app.use("/api/recipes", authenticateUser, recipeRouter);
 app.use("/api/auth", authRouter);
 
 app.use("*", (req, res) => {

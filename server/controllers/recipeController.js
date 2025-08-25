@@ -8,14 +8,20 @@ export const getRecipeById = async (req, res) => {
 };
 
 export const getAllRecipes = async (req, res) => {
-  const recipes = await Recipe.find({});
+  const recipes = await Recipe.find({ createdBy: req.user.userId }); // attached by jwt
 
   res.status(StatusCodes.OK).json({ recipes });
 };
 
 export const createRecipe = async (req, res) => {
-  const { title, description } = req.body;
-  const recipe = await Recipe.create({ title, description }); // express-async-errors catches the error
+  req.body.createdBy = req.user.userId;
+  const { title, description, createdBy, recipeStatus } = req.body;
+  const recipe = await Recipe.create({
+    title,
+    description,
+    createdBy,
+    recipeStatus,
+  }); // express-async-errors catches the error
 
   res.status(StatusCodes.CREATED).json({ recipe });
 };

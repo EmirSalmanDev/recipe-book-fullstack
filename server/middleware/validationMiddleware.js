@@ -1,5 +1,9 @@
 import { body, param, validationResult } from "express-validator";
-import { BadRequestError, NotFoundError } from "../models/customError.js";
+import {
+  BadRequestError,
+  NotFoundError,
+  UnauthorizedError,
+} from "../models/customError.js";
 import { RECIPE_STATUS } from "../utils/constants.js";
 import mongoose from "mongoose";
 import Recipe from "../models/recipeModel.js";
@@ -14,6 +18,9 @@ const withValidationErrors = (validateValues) => {
         const errorMessages = errors.array().map((e) => e.msg);
         if (errorMessages[0].startsWith("Could not find")) {
           throw new NotFoundError(errorMessages);
+        }
+        if (errorMessages[0].startsWith("not authorized")) {
+          throw new UnauthorizedError(errorMessages);
         }
         throw new BadRequestError(errorMessages);
       }
@@ -39,7 +46,7 @@ export const validateRecipeInput = withValidationErrors([
 ]);
 
 export const validateIdParam = withValidationErrors([
-  param("rid").custom(async (value) => {
+  param("rid").custom(async (value, { req }) => {
     const isValid = mongoose.Types.ObjectId.isValid(value);
     if (!isValid) {
       throw new BadRequestError("invalid MongoDB id");
@@ -50,6 +57,11 @@ export const validateIdParam = withValidationErrors([
       throw new NotFoundError(
         "Could not find a recipe for the given place id."
       );
+
+    const isAdmin = req.user.role === "admin";
+    const isOwner = req.user.userId === recipe.createdBy.toString();
+    if (!isAdmin && !isOwner)
+      throw new UnauthorizedError("not authorized to access this route");
   }),
 ]);
 
