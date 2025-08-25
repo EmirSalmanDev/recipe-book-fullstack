@@ -2,9 +2,12 @@ import { Router } from "express";
 const router = Router();
 
 import { login, register } from "../controllers/authController.js";
-import { validateRegisterInput } from "../models/validationMiddleware.js";
+import {
+  validateLoginInput,
+  validateRegisterInput,
+} from "../models/validationMiddleware.js";
 
-router.post("/login", login);
+router.post("/login", validateLoginInput, login);
 
 router.post("/register", validateRegisterInput, register);
 
