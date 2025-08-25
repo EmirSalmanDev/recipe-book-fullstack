@@ -37,3 +37,12 @@ export const register = async (req, res) => {
   });
   res.status(StatusCodes.CREATED).json({ msg: "user created" });
 };
+
+export const logout = (req, res) => {
+  res.cookie("token", "logout"),
+    {
+      httpOnly: true,
+      expires: new Date(Date.now()),
+    };
+  res.status(StatusCodes.OK).json({ msg: "user logged out!" });
+};
