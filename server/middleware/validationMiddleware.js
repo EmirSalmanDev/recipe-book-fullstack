@@ -1,9 +1,9 @@
 import { body, param, validationResult } from "express-validator";
-import { BadRequestError, NotFoundError } from "./customError.js";
+import { BadRequestError, NotFoundError } from "../models/customError.js";
 import { RECIPE_STATUS } from "../utils/constants.js";
 import mongoose from "mongoose";
-import Recipe from "./recipeModel.js";
-import User from "./userModel.js";
+import Recipe from "../models/recipeModel.js";
+import User from "../models/userModel.js";
 
 const withValidationErrors = (validateValues) => {
   return [

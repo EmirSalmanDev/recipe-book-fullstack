@@ -11,7 +11,7 @@ const recipeSchema = new mongoose.Schema(
       default: RECIPE_STATUS.TESTING,
     },
     // image: { type: String, required: true },
-    //creator: { type: mongoose.Types.ObjectId, required: true, ref: "User" },
+    createdBy: { type: mongoose.Types.ObjectId, required: true, ref: "User" },
   },
   {
     timestamps: true,

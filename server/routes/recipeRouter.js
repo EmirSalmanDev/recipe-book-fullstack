@@ -11,7 +11,7 @@ import {
 import {
   validateRecipeInput,
   validateIdParam,
-} from "../models/validationMiddleware.js";
+} from "../middleware/validationMiddleware.js";
 
 router.get("/:rid", validateIdParam, getRecipeById);
 

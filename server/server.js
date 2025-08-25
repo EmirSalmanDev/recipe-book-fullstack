@@ -7,7 +7,7 @@ const app = express();
 import mongoose, { mongo } from "mongoose";
 
 // middleware
-import errorHandlerMiddleware from "./models/errorHandlerMiddleware.js";
+import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 
 // routers
 import recipeRouter from "./routes/recipeRouter.js";
