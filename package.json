@@ -1,0 +1,14 @@
+{
+  "name": "fullstack-project",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "setup-project": "npm install --prefix server && npm install --prefix client",
+    "start:server": "npm run dev --prefix server",
+    "start:client": "npm run dev --prefix client",
+    "start:dev": "concurrently --kill-others-on-fail -n SERVER,CLIENT -c red,blue \"npm run start:server\" \"npm run start:client\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.1"
+  }
+}
