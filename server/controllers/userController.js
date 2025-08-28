@@ -13,7 +13,9 @@ export const getCurrentUser = async (req, res) => {
 };
 
 export const getAppStatus = async (req, res) => {
-  res.status(StatusCodes.OK).json({ msg: "get app status" });
+  const users = await User.countDocuments();
+  const recipes = await Recipe.countDocuments();
+  res.status(StatusCodes.OK).json({ users, recipes });
 };
 
 export const updateUser = async (req, res) => {
