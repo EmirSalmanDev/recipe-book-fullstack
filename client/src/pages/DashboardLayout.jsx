@@ -1,16 +1,29 @@
 import React, { createContext, useContext, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, redirect, useLoaderData, useNavigate } from "react-router-dom";
 import Wrapper from "../assets/wrappers/Dashboard";
 import { BigSidebar, Navbar, SmallSidebar } from "../components";
 import { checkDefaultTheme } from "../App";
+import axios from "axios";
+import { toast } from "react-toastify";
+
+export const loader = async () => {
+  // fetches and prepares data before the component renders
+  try {
+    const { data } = await axios.get("/api/users/current-user");
+    return data;
+  } catch (error) {
+    return redirect("/"); // only use redirect in loader or action
+  }
+};
 
 const DashboardContext = createContext();
 
 const DashboardLayout = () => {
+  const { user } = useLoaderData();
+  const navigate = useNavigate();
+
   const [showSidebar, setshowSidebar] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(checkDefaultTheme());
-  // temp
-  const user = { name: "Emir" };
 
   const toggleDarkTheme = () => {
     const newDarkTheme = !isDarkTheme;
@@ -23,7 +36,9 @@ const DashboardLayout = () => {
   };
 
   const logoutUser = async () => {
-    console.log("user logout");
+    navigate("/");
+    await axios.get("/api/auth/logout");
+    toast.success("Logging out");
   };
 
   return (
@@ -44,7 +59,8 @@ const DashboardLayout = () => {
           <div>
             <Navbar />
             <div className="dashboard-page">
-              <Outlet />
+              <Outlet />{" "}
+              {/* context={{ user }} can be used instead of DashboardContext */}
             </div>
           </div>
         </main>
