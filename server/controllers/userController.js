@@ -7,7 +7,6 @@ export const getCurrentUser = async (req, res) => {
   console.log(userId);
 
   const user = await User.findById(userId, "-password");
-  console.log(user);
 
   res.status(StatusCodes.OK).json({ user });
 };

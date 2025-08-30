@@ -54,6 +54,9 @@ const Wrapper = styled.section`
     .active {
       color: var(--secondary-color);
     }
+    .pending {
+      background-color: var(--background-color);
+    }
   }
 `;
 
