@@ -20,6 +20,7 @@ import { action as registerAction } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
 import { loader as dashboardLoader } from "./pages/DashboardLayout";
 import { action as addRecipeAction } from "./pages/AddRecipe";
+import { loader as recipeLoader } from "./pages/AllRecipes";
 
 export const checkDefaultTheme = () => {
   const isDarkTheme = localStorage.getItem("darkTheme") === "true";
@@ -66,6 +67,7 @@ const router = createBrowserRouter([
           {
             path: "all-recipes",
             element: <AllRecipes />,
+            loader: recipeLoader,
           },
           {
             path: "profile",
