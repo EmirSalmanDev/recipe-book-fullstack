@@ -23,6 +23,7 @@ import { loader as recipeLoader } from "./pages/AllRecipes";
 import { action as editRecipeAction } from "./pages/EditRecipe";
 import { loader as editRecipeLoader } from "./pages/EditRecipe";
 import { action as deleteRecipeAction } from "./pages/DeleteRecipe";
+import { loader as adminLoader } from "./pages/Admin";
 
 export const checkDefaultTheme = () => {
   const isDarkTheme = localStorage.getItem("darkTheme") === "true";
@@ -78,6 +79,7 @@ const router = createBrowserRouter([
           {
             path: "admin",
             element: <Admin />,
+            loader: adminLoader,
           },
           {
             path: "edit-recipe/:id",

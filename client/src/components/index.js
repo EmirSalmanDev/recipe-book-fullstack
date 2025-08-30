@@ -8,3 +8,4 @@ export { default as RecipesContainer } from "./RecipesContainer";
 export { default as SearchContainer } from "./SearchContainer";
 export { default as RecipeCard } from "./RecipeCard";
 export { default as RecipeInfo } from "./RecipeInfo";
+export { default as StatItem } from "./StatItem";
