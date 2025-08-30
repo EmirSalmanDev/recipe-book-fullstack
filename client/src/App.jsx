@@ -7,7 +7,6 @@ import {
   AddRecipe,
   Admin,
   AllRecipes,
-  DeleteRecipe,
   EditRecipe,
   Login,
   Profile,
@@ -21,6 +20,9 @@ import { action as loginAction } from "./pages/Login";
 import { loader as dashboardLoader } from "./pages/DashboardLayout";
 import { action as addRecipeAction } from "./pages/AddRecipe";
 import { loader as recipeLoader } from "./pages/AllRecipes";
+import { action as editRecipeAction } from "./pages/EditRecipe";
+import { loader as editRecipeLoader } from "./pages/EditRecipe";
+import { action as deleteRecipeAction } from "./pages/DeleteRecipe";
 
 export const checkDefaultTheme = () => {
   const isDarkTheme = localStorage.getItem("darkTheme") === "true";
@@ -76,6 +78,16 @@ const router = createBrowserRouter([
           {
             path: "admin",
             element: <Admin />,
+          },
+          {
+            path: "edit-recipe/:id",
+            element: <EditRecipe />,
+            loader: editRecipeLoader,
+            action: editRecipeAction,
+          },
+          {
+            path: "delete-recipe/:id",
+            action: deleteRecipeAction,
           },
         ],
       },

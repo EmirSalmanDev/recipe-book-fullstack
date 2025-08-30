@@ -27,11 +27,11 @@ export const createRecipe = async (req, res) => {
 };
 
 export const editRecipeById = async (req, res) => {
-  const { title, description } = req.body;
+  const { title, description, recipeStatus } = req.body;
 
   const editedRecipe = await Recipe.findByIdAndUpdate(
     req.params.rid,
-    { title, description },
+    { title, description, recipeStatus },
     { new: true, runValidators: true }
   );
 

@@ -29,8 +29,10 @@ const RecipeCard = ({ createdAt, description, recipeStatus, title, _id }) => {
         </div>
 
         <footer className="actions">
-          <Link className="btn edit-btn">Edit</Link>
-          <Form>
+          <Link to={`../edit-recipe/${_id}`} className="btn edit-btn">
+            Edit
+          </Link>
+          <Form method="post" action={`../delete-recipe/${_id}`}>
             <button type="submit" className="btn delete-btn">
               Delete
             </button>
