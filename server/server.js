@@ -6,6 +6,7 @@ dotenv.config();
 const app = express();
 import mongoose, { mongo } from "mongoose";
 import cookieParser from "cookie-parser";
+import cloudinary from "cloudinary";
 
 // middleware
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
@@ -24,6 +25,12 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 // Serve static files (e.g., React build, images, CSS, favicon) from the "public" folder
 // Thanks to this, every file inside the "public" folder becomes automatically accessible via the web
 app.use(express.static(path.resolve(__dirname, "./public")));
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+});
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
