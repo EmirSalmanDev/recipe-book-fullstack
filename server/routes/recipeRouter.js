@@ -12,15 +12,22 @@ import {
   validateRecipeInput,
   validateIdParam,
 } from "../middleware/validationMiddleware.js";
+import { checkForTestUser } from "../middleware/authMiddleware.js";
 
 router.get("/:rid", validateIdParam, getRecipeById);
 
 router.get("/", getAllRecipes);
 
-router.post("/", validateRecipeInput, createRecipe);
+router.post("/", checkForTestUser, validateRecipeInput, createRecipe);
 
-router.patch("/:rid", validateRecipeInput, validateIdParam, editRecipeById);
+router.patch(
+  "/:rid",
+  checkForTestUser,
+  validateRecipeInput,
+  validateIdParam,
+  editRecipeById
+);
 
-router.delete("/:rid", validateIdParam, deleteRecipeById);
+router.delete("/:rid", checkForTestUser, validateIdParam, deleteRecipeById);
 
 export default router;
