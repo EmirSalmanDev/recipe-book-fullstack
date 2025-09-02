@@ -18,6 +18,7 @@ export const getAppStatus = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
+  console.log(req.file);
   const userId = req.user.userId;
   const { name, email, lastname } = req.body;
   const updatedUser = await User.findByIdAndUpdate(userId, {

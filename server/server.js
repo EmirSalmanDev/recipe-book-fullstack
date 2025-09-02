@@ -16,6 +16,15 @@ import recipeRouter from "./routes/recipeRouter.js";
 import authRouter from "./routes/authRouter.js";
 import userRouter from "./routes/userRouter.js";
 
+// public
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import path from "path";
+const __dirname = dirname(fileURLToPath(import.meta.url));
+// Serve static files (e.g., React build, images, CSS, favicon) from the "public" folder
+// Thanks to this, every file inside the "public" folder becomes automatically accessible via the web
+app.use(express.static(path.resolve(__dirname, "./public")));
+
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
