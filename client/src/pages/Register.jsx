@@ -1,7 +1,7 @@
 import React from "react";
 import Wrapper from "../assets/wrappers/RegisterAndLoginPage";
-import { Logo, FormRow } from "../components";
-import { Link, Form, redirect, useNavigation } from "react-router-dom";
+import { Logo, FormRow, SubmitBtn } from "../components";
+import { Link, Form, redirect } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -47,9 +47,7 @@ const Register = () => {
           name="password"
           defaultValue="secret123Test"
         />
-        <button type="submit" className="btn btn-block" disabled={isSubmitting}>
-          {isSubmitting ? "submitting..." : "submit"}
-        </button>
+        <SubmitBtn />
         <p>
           Already a member?
           <Link to="/login" className="member-btn">

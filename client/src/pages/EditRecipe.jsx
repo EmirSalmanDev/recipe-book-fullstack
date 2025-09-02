@@ -1,13 +1,7 @@
-import { FormRow, FormRowSelect } from "../components";
+import { FormRow, FormRowSelect, SubmitBtn } from "../components";
 import Wrapper from "../assets/wrappers/DashboardFormPage";
 import { RECIPE_STATUS } from "../../../server/utils/constants";
-import {
-  Form,
-  useNavigation,
-  redirect,
-  useLoaderData,
-  useParams,
-} from "react-router-dom";
+import { Form, redirect, useLoaderData, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 
@@ -39,14 +33,11 @@ export const action = async ({ request, params }) => {
 const EditRecipe = () => {
   // const params = useParams();
   const { recipe } = useLoaderData();
-  const navigation = useNavigation();
-
-  const isSubmitting = navigation.state === "submitting";
 
   return (
     <Wrapper>
       <Form method="post" className="form">
-        <h4 className="form-title">edit job</h4>
+        <h4 className="form-title">edit recipe</h4>
         <div className="form-center">
           <FormRow type="text" name="title" defaultValue={recipe.title} />
           <FormRow
@@ -60,13 +51,7 @@ const EditRecipe = () => {
             defaultValue={recipe.recipeStatus}
             labelText="Recipe Status"
           />
-          <button
-            type="submit"
-            className="btn btn-block form-btn"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? "Submitting..." : "Submit"}
-          </button>
+          <SubmitBtn formBtn />
         </div>
       </Form>
     </Wrapper>

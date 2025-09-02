@@ -9,3 +9,4 @@ export { default as SearchContainer } from "./SearchContainer";
 export { default as RecipeCard } from "./RecipeCard";
 export { default as RecipeInfo } from "./RecipeInfo";
 export { default as StatItem } from "./StatItem";
+export { default as SubmitBtn } from "./SubmitBtn";

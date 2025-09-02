@@ -1,7 +1,7 @@
-import { FormRow, FormRowSelect } from "../components";
+import { FormRow, FormRowSelect, SubmitBtn } from "../components";
 import Wrapper from "../assets/wrappers/DashboardFormPage";
 import { RECIPE_STATUS } from "../../../server/utils/constants";
-import { Form, useNavigation, redirect } from "react-router-dom";
+import { Form, redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useDashboardContext } from "./DashboardLayout";
@@ -22,8 +22,7 @@ export const action = async ({ request }) => {
 
 const AddRecipe = () => {
   const { user } = useDashboardContext();
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === "submitting";
+
   return (
     <Wrapper>
       <Form method="post" className="form">
@@ -43,13 +42,7 @@ const AddRecipe = () => {
             list={Object.values(RECIPE_STATUS)}
           />
 
-          <button
-            type="submit"
-            className="btn btn-block form-btn "
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? "submitting..." : "submit"}
-          </button>
+          <SubmitBtn formBtn />
         </div>
       </Form>
     </Wrapper>
