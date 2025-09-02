@@ -7,6 +7,7 @@ import {
   createRecipe,
   editRecipeById,
   deleteRecipeById,
+  showStats,
 } from "../controllers/recipeController.js";
 import {
   validateRecipeInput,
@@ -14,11 +15,13 @@ import {
 } from "../middleware/validationMiddleware.js";
 import { checkForTestUser } from "../middleware/authMiddleware.js";
 
-router.get("/:rid", validateIdParam, getRecipeById);
-
 router.get("/", getAllRecipes);
 
 router.post("/", checkForTestUser, validateRecipeInput, createRecipe);
+
+router.get("/stats", showStats);
+
+router.get("/:rid", validateIdParam, getRecipeById);
 
 router.patch(
   "/:rid",
