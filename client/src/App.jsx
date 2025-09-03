@@ -25,6 +25,7 @@ import { loader as editRecipeLoader } from "./pages/EditRecipe";
 import { action as deleteRecipeAction } from "./pages/DeleteRecipe";
 import { loader as adminLoader } from "./pages/Admin";
 import { action as profileAction } from "./pages/Profile";
+import { loader as statsLoader } from "./pages/Stats";
 
 export const checkDefaultTheme = () => {
   const isDarkTheme = localStorage.getItem("darkTheme") === "true";
@@ -67,6 +68,7 @@ const router = createBrowserRouter([
           {
             path: "stats",
             element: <Stats />,
+            loader: statsLoader,
           },
           {
             path: "all-recipes",

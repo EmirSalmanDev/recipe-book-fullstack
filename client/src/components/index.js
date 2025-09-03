@@ -10,3 +10,5 @@ export { default as RecipeCard } from "./RecipeCard";
 export { default as RecipeInfo } from "./RecipeInfo";
 export { default as StatItem } from "./StatItem";
 export { default as SubmitBtn } from "./SubmitBtn";
+export { default as StatsContainer } from "./StatsContainer";
+export { default as ChartContainer } from "./ChartsContainer";

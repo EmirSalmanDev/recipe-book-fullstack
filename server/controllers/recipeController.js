@@ -64,6 +64,7 @@ export const showStats = async (req, res) => {
     testing: stats.testing || 0,
     done: stats.done || 0,
   };
+  // { testing: 3, done: 2 }
 
   let monthlyNewRecipes = await Recipe.aggregate([
     { $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } },
@@ -76,8 +77,6 @@ export const showStats = async (req, res) => {
     { $sort: { "_id.year": -1, "_id.month": -1 } },
     { $limit: 4 },
   ]);
-
-  console.log(monthlyNewRecipes);
 
   monthlyNewRecipes = monthlyNewRecipes
     .map((item) => {
@@ -94,8 +93,7 @@ export const showStats = async (req, res) => {
       return { date, count };
     })
     .reverse();
-
-  console.log(monthlyNewRecipes);
+  // [ { date: 'Aug 25', count: 2 }, { date: 'Sep 25', count: 3 } ]
 
   res.status(StatusCodes.OK).json({ defaultStats, monthlyNewRecipes });
 };
