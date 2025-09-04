@@ -8,8 +8,16 @@ import SearchContainer from "../components/SearchContainer";
 
 export const loader = async ({ request }) => {
   try {
-    const { data } = await axios.get("/api/recipes");
-    return data;
+    // Converts the query string parameters from the URL into a plain JavaScript object
+    const params = Object.fromEntries([
+      ...new URL(request.url).searchParams.entries(), // spread
+    ]);
+
+    const { data } = await axios.get("/api/recipes", { params });
+    return {
+      data,
+      searchValues: params,
+    };
   } catch (error) {
     toast.error(error?.response?.data?.msg);
     return error;
@@ -19,12 +27,12 @@ export const loader = async ({ request }) => {
 const AllRecipesContext = createContext();
 
 const AllRecipes = () => {
-  const data = useLoaderData();
+  const { data, searchValues } = useLoaderData();
 
   return (
     <>
       <Wrapper>
-        <AllRecipesContext.Provider value={{ data }}>
+        <AllRecipesContext.Provider value={{ data, searchValues }}>
           <SearchContainer />
           <RecipesContainer />
         </AllRecipesContext.Provider>
