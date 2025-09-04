@@ -3,10 +3,19 @@ import Wrapper from "../assets/wrappers/DashboardFormPage";
 import { Form, useSubmit, Link } from "react-router-dom";
 import { RECIPE_STATUS, RECIPE_SORT_BY } from "../../../server/utils/constants";
 import { useAllRecipesContext } from "../pages/AllRecipes";
+import { useRef } from "react";
 
 const SearchContainer = () => {
   const { searchValues } = useAllRecipesContext();
   const { search, recipeStatus, sort } = searchValues;
+
+  const timerRef = useRef(); // value persists between renders (not reset like normal variables)
+  const debounce = (e) => {
+    clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      submit(e.currentTarget.form);
+    }, 1000);
+  };
 
   const submit = useSubmit();
   return (
@@ -29,9 +38,7 @@ const SearchContainer = () => {
             name="recipeStatus"
             list={["all", ...Object.values(RECIPE_STATUS)]}
             defaultValue={recipeStatus}
-            onChange={(e) => {
-              submit(e.currentTarget.form);
-            }}
+            onChange={debounce}
           />
 
           <FormRowSelect
