@@ -17,8 +17,7 @@ import { checkForTestUser } from "../middleware/authMiddleware.js";
 
 router.get("/", getAllRecipes);
 
-// router.post("/", checkForTestUser, validateRecipeInput, createRecipe);
-router.post("/", validateRecipeInput, createRecipe);
+router.post("/", checkForTestUser, validateRecipeInput, createRecipe);
 
 router.get("/stats", showStats);
 
