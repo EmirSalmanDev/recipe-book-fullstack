@@ -5,6 +5,7 @@ const recipeSchema = new mongoose.Schema(
   {
     title: String,
     description: String,
+    ingredients: [String],
     recipeStatus: {
       type: String,
       enum: Object.values(RECIPE_STATUS),
