@@ -51,12 +51,19 @@ export const getAllRecipes = async (req, res) => {
 
 export const createRecipe = async (req, res) => {
   req.body.createdBy = req.user.userId;
-  const { title, description, createdBy, recipeStatus } = req.body;
+  const { title, description, createdBy, recipeStatus, ingredients } = req.body;
+
+  // ingredients: string --> array
+  const ingredientsArray = Array.isArray(ingredients)
+    ? ingredients
+    : JSON.parse(ingredients);
+
   const recipe = await Recipe.create({
     title,
     description,
     createdBy,
     recipeStatus,
+    ingredients: ingredientsArray,
   }); // express-async-errors catches the error
 
   res.status(StatusCodes.CREATED).json({ recipe });
