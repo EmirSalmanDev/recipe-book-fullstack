@@ -1,4 +1,4 @@
-import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
+import { BsSunFill, BsFillMoonFill } from "react-icons/bs";
 import Wrapper from "../assets/wrappers/ThemeToggle";
 import { useDashboardContext } from "../pages/DashboardLayout";
 
@@ -8,7 +8,7 @@ const ThemeToggle = () => {
   return (
     <Wrapper onClick={toggleDarkTheme}>
       {isDarkTheme ? (
-        <BsFillSunFill className="toggle-icon" />
+        <BsSunFill className="toggle-icon" style={{ color: "white" }} />
       ) : (
         <BsFillMoonFill className="toggle-icon" />
       )}

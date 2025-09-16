@@ -8,9 +8,8 @@ const recipeSchema = new mongoose.Schema(
     recipeStatus: {
       type: String,
       enum: Object.values(RECIPE_STATUS),
-      default: RECIPE_STATUS.TESTING,
+      default: RECIPE_STATUS.OTHER,
     },
-    // image: { type: String, required: true },
     createdBy: { type: mongoose.Types.ObjectId, required: true, ref: "User" },
   },
   {

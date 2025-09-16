@@ -8,6 +8,10 @@ const Wrapper = styled.section`
     text-transform: none;
   }
 
+  h5 {
+    margin-bottom: 1.5rem;
+  }
+
   .recipes {
     display: flex;
     flex-wrap: wrap;

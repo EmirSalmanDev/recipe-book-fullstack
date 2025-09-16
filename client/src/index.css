@@ -67,11 +67,19 @@ html {
   --dark-mode-text-secondary-color: #dddd;
 }
 
-.dark-theme {
+/* .dark-theme {
   --background-color: var(--secondary-200);
   --background-secondary-color: var(--primary-200);
   --text-color: var(--white);
   --text-secondary-color: var(--vanilla);
+} */
+
+.dark-theme {
+  --background-color: #333;
+  --background-secondary-color: #3f3f3f;
+  --text-color: #f0f0f0;
+  --text-secondary-color: #dddd;
+  --secondary-color: #a3b69c;
 }
 
 /* ================== TYPOGRAPHY ================== */

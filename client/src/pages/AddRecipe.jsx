@@ -29,7 +29,6 @@ const AddRecipe = () => {
         <h4 className="form-title">add recipe</h4>
         <div className="form-center">
           <FormRow type="text" labelText="recipe name" name="title" />
-          {/* image upload will be added */}
           <FormRow
             type="text"
             labelText="recipe description"
@@ -38,7 +37,7 @@ const AddRecipe = () => {
           <FormRowSelect
             name="recipeStatus"
             labelText="Recipe Status"
-            defaultValue={RECIPE_STATUS.TESTING}
+            defaultValue={RECIPE_STATUS.OTHER}
             list={Object.values(RECIPE_STATUS)}
           />
 

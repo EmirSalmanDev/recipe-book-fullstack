@@ -1,6 +1,7 @@
 export const RECIPE_STATUS = {
-  TESTING: "testing",
-  DONE: "done",
+  OTHER: "other",
+  SAVORY: "savory",
+  DESSERT: "dessert",
 };
 
 export const RECIPE_SORT_BY = {

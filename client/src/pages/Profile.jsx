@@ -37,7 +37,7 @@ const Profile = () => {
           {/* file input */}
           <div className="form-row">
             <label htmlFor="image" className="form-label">
-              Select an image file (max 1 MB):
+              Select an image (max 1 MB):
             </label>
             <input
               type="file"
