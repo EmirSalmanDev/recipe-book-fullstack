@@ -1,8 +1,15 @@
 import React from "react";
 
-const FormRow = ({ type, name, labelText, defaultValue, onChange }) => {
+const FormRow = ({
+  type,
+  name,
+  labelText,
+  defaultValue,
+  onChange,
+  className,
+}) => {
   return (
-    <div className="form-row">
+    <div className={`form-row ${className ? className : ""}`}>
       <label htmlFor={name} className="form-label">
         {/* verirse labelText vermezse name */}
         {labelText || name}

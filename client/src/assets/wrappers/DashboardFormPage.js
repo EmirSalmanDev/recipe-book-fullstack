@@ -24,12 +24,17 @@ const Wrapper = styled.section`
   .form-center {
     display: grid;
     row-gap: 1rem;
+    grid-template-columns: 1fr;
   }
   .form-btn {
     align-self: end;
     margin-top: 1rem;
     display: grid;
     place-items: center;
+  }
+
+  .form-row-ingredients {
+    display: grid;
   }
 
   .ingredient-row {
@@ -62,6 +67,10 @@ const Wrapper = styled.section`
     box-shadow: var(--shadow-3);
   }
 
+  .full-width {
+    grid-column: 1 / -1;
+  }
+
   @media (min-width: 992px) {
     .form-center {
       grid-template-columns: 1fr 1fr;
@@ -70,9 +79,9 @@ const Wrapper = styled.section`
     }
   }
   @media (min-width: 1120px) {
-    .form-center {
+    /* .form-center {
       grid-template-columns: 1fr 1fr 1fr;
-    }
+    } */
   }
 `;
 

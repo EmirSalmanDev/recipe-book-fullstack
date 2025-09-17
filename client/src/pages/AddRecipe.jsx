@@ -42,20 +42,23 @@ const AddRecipe = () => {
       <Form method="post" className="form">
         <h4 className="form-title">add recipe</h4>
         <div className="form-center">
+          {/* first row */}
           <FormRow type="text" labelText="recipe name" name="title" />
-          <FormRow
-            type="text"
-            labelText="recipe description"
-            name="description"
-          />
           <FormRowSelect
             name="recipeStatus"
             labelText="Recipe Status"
             defaultValue={RECIPE_STATUS.OTHER}
             list={Object.values(RECIPE_STATUS)}
           />
+          {/* second row */}
+          <FormRow
+            type="text"
+            labelText="recipe description"
+            name="description"
+            className="full-width"
+          />
 
-          <div className="form-row form-row-ingredients">
+          <div className="form-row form-row-ingredients full-width">
             <label htmlFor="ingredients" className="form-label">
               Ingredients
             </label>
@@ -64,7 +67,6 @@ const AddRecipe = () => {
                 <input
                   className="form-input"
                   type="text"
-                  placeholder="Ingredient"
                   value={ing.value}
                   onChange={(e) => {
                     setIngredients(
@@ -85,6 +87,8 @@ const AddRecipe = () => {
               </div>
             ))}
           </div>
+
+          {/* last row */}
           <button
             type="button"
             onClick={addIngredient}
