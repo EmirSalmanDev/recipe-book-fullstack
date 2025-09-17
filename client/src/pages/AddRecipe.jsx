@@ -7,6 +7,7 @@ import axios from "axios";
 import { useDashboardContext } from "./DashboardLayout";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { MdDeleteForever } from "react-icons/md";
 
 export const action = async ({ request }) => {
   const formData = await request.formData();
@@ -54,28 +55,42 @@ const AddRecipe = () => {
             list={Object.values(RECIPE_STATUS)}
           />
 
-          {ingredients.map((ing) => (
-            <div key={ing.id} className="ingredient-row">
-              <input
-                type="text"
-                placeholder="Ingredient"
-                value={ing.value}
-                onChange={(e) => {
-                  setIngredients(
-                    ingredients.map((i) =>
-                      i.id === ing.id ? { ...i, value: e.target.value } : i
-                    )
-                  );
-                }}
-                required
-              />
-              <button type="button" onClick={() => removeIngredient(ing.id)}>
-                -
-              </button>
-            </div>
-          ))}
-          <button type="button" onClick={addIngredient}>
-            + Add Ingredient
+          <div className="form-row form-row-ingredients">
+            <label htmlFor="ingredients" className="form-label">
+              Ingredients
+            </label>
+            {ingredients.map((ing) => (
+              <div key={ing.id} className="ingredient-row">
+                <input
+                  className="form-input"
+                  type="text"
+                  placeholder="Ingredient"
+                  value={ing.value}
+                  onChange={(e) => {
+                    setIngredients(
+                      ingredients.map((i) =>
+                        i.id === ing.id ? { ...i, value: e.target.value } : i
+                      )
+                    );
+                  }}
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => removeIngredient(ing.id)}
+                  className="btn ingredient-row-btn "
+                >
+                  <MdDeleteForever size={20} />
+                </button>
+              </div>
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={addIngredient}
+            className="btn form-btn"
+          >
+            Add Ingredient
           </button>
 
           {/* Send array with the help of hidden input*/}

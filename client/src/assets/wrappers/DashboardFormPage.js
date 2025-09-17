@@ -32,6 +32,36 @@ const Wrapper = styled.section`
     place-items: center;
   }
 
+  .ingredient-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .ingredient-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .ingredient-row-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    background-color: var(--primary-color);
+  }
+
+  .ingredient-row-btn:hover {
+    background: var(--primary-100);
+    box-shadow: var(--shadow-3);
+  }
+
   @media (min-width: 992px) {
     .form-center {
       grid-template-columns: 1fr 1fr;
