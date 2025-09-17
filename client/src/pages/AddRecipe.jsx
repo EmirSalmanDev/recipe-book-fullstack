@@ -28,7 +28,8 @@ export const action = async ({ request }) => {
 const AddRecipe = () => {
   const { user } = useDashboardContext();
   const [ingredients, setIngredients] = useState([{ id: uuidv4(), value: "" }]);
-
+  // Using uuid for unique keys because ingredients can be dynamically added or removed,
+  // ensuring React correctly tracks each item and avoids key-related rendering issues
   const addIngredient = () => {
     setIngredients([...ingredients, { id: uuidv4(), value: "" }]);
   };

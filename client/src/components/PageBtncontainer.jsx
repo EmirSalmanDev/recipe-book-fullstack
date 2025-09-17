@@ -10,9 +10,10 @@ const PageBtncontainer = () => {
   const {
     data: { numOfPages, currentPage },
   } = useAllRecipesContext();
-  const pages = Array.from({ length: numOfPages }, (_, index) => {
-    return index + 1;
-  }); // create array [1,2,...,numOfPages]
+  // const pages = Array.from({ length: numOfPages }, (_, index) => {
+  //   return index + 1;
+  // });
+  // create array [1,2,...,numOfPages]
 
   const handlePageChange = (pageNumber) => {
     const searchParams = new URLSearchParams(search); // clone current query params
@@ -72,20 +73,21 @@ const PageBtncontainer = () => {
 
     if (currentPage < numOfPages - 2) {
       pageButtons.push(
-        <span className=" page-btn dots" key="dots+1">
+        <span className="page-btn dots" key="dots+1">
           ....
         </span>
       );
     }
 
     // Add the last page button
-    pageButtons.push(
-      addPageButton({
-        pageNumber: numOfPages,
-
-        activeClass: currentPage === numOfPages,
-      })
-    );
+    if (numOfPages > 1) {
+      pageButtons.push(
+        addPageButton({
+          pageNumber: numOfPages,
+          activeClass: currentPage === numOfPages,
+        })
+      );
+    }
 
     return pageButtons;
   };
